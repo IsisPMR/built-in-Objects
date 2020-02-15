@@ -10,9 +10,11 @@ myFunc('myString');
 */ 
 
 /*------------------------------ Solución ------------------------------------------- */
+function string(value) {
+    console.log(value.length);
+}
 
-
-
+console.log(string("Hello")); 
 /*----------------------------------------------------------------------------------- */
 
 
@@ -32,9 +34,17 @@ b) el número ahora es un entero con valor de (valor) ;)
 */ 
 
 /*------------------------------ Solución ------------------------------------------- */
+function integer(num){
+    if (Number.isInteger(num)){
+        console.log(num, ": Is an Integer");
 
+    }else{
+        console.log("The number is now an integer with this value: ", parseInt(num));
+    }
+}
 
-
+integer("15");
+integer(8);     
 /*----------------------------------------------------------------------------------- */
 
 
@@ -51,9 +61,14 @@ expected result:  4 caracteres.
 */
 
 /*------------------------------ Solución ------------------------------------------- */
+let boolean = false;
 
+function charnum(boolean){
+    let string = boolean.toString();
+    console.log(string.length);
+}
 
-
+charnum(boolean);  
 /*----------------------------------------------------------------------------------- */
 
 
@@ -70,8 +85,17 @@ myFunc(obj);
 */ 
 
 /*------------------------------ Solución ------------------------------------------- */
+let object = {
+    name: 'Isis',
+    age: 28
+}
 
+function data(object){
+    console.log()
+    console.log("1(number of properties): ",Object.keys(object).length,", ", "2(properties name): ",Object.keys(object),", ", "3:(properties value) ",Object.values(object));
+}
 
+data(object);  
 
 /*----------------------------------------------------------------------------------- */
 
@@ -90,8 +114,13 @@ result: 3.
 */ 
 
 /*------------------------------ Solución ------------------------------------------- */
+var sum = new Function('a','b','c', 'return a + b + c');
 
+function myFunc(fn){
+  console.log(fn.length);
+}
 
+myFunc(sum);    
 
 /*----------------------------------------------------------------------------------- */
 
@@ -112,9 +141,27 @@ var arr = ['Apple', 'Banana'];
 myFunc(arr, 3, 'apple');
 */ 
 
-/*------------------------------ Solución ------------------------------------------- */
+/*------------------------------ Solución ------------------------------------------- */ 
+let fruits = ["Apple", "Banana"];
 
+function desiredLength(array, num, template){
+    let difference = num - array.length;
 
+    if( difference === 1){
+        array.push(template);
+        console.log(array);
+    }
+
+    else if (difference > 1) {
+        console.log("El arreglo es menor por: ", difference);
+    }
+
+    else{
+        console.log("El arreglo es mayor por: ", Math.abs(difference));
+    }
+}
+
+desiredLength(fruits, 1, "Apple");  
 
 /*----------------------------------------------------------------------------------- */
 
@@ -128,9 +175,15 @@ y otro que muestre cuantos milisegundos han pasado desde el 1/enero/1970 hasta a
 myFunc();
 */
 
-/*------------------------------ Solución ------------------------------------------- */
+/*------------------------------ Solución ------------------------------------------- */ 
+function date(){
+    var today = new Date();
 
-
+    console.log(today.toISOString());
+    console.log(Date.now());
+}
+        
+date();     
 
 /*----------------------------------------------------------------------------------- */
 
@@ -149,8 +202,11 @@ result = 9;
 */
 
 /*------------------------------ Solución ------------------------------------------- */
+function power(base, exponent){
+    console.log(Math.pow(base, exponent));
+}
 
-
+power(2,4);     
 
 /*----------------------------------------------------------------------------------- */
 
@@ -169,7 +225,21 @@ myFunc(str, template)
 */
 
 /*------------------------------ Solución ------------------------------------------- */
+var rg = new RegExp(/([A-Z])/);
 
+function regex(str, template) {
+
+    if (rg.test(str)) {
+
+        newstring = str.replace(rg, template);
+        console.log(newstring);
+        return;
+    }
+
+    console.log("No encuentro coincidencias");
+}
+console.log( regex("nombre", "Ja") ); 
+console.log( regex("nombJre", "Ja") );       
 
 
 /*----------------------------------------------------------------------------------- */
@@ -186,8 +256,18 @@ Ex: myFunc(number)
 */
 
 /*------------------------------ Solución ------------------------------------------- */
+function numparameters(num){
+    if (num <= 10 && num >= 1){
 
+        console.log("El número esta dentro de los parámetros");
+        return;
+    }
 
+    throw new Error("El número esta fuera de los parametros");
+}
+
+numparameters(8);
+numparameters(34);       
 
 /*----------------------------------------------------------------------------------- */
 
@@ -197,9 +277,34 @@ Ex: myFunc(number)
 Usar los objetos vistos en clase y aplicarlos para solucionar un escenario que pueda ocurrir 
 entre los proyectos finales que tienen asignados.
 
-Describir el caso:
+Describir el caso:En mi página de tutoriales no todos los usuarios podrán crear un tutorial, solo los sUser
+en este casó quiero que haya un botón solo para los sUser de crear tutorial.
 
-Mostrar la solucíon en código:
+Mostrar la solucíon en código:  */
+function User(idUser, email, password, nickName, sUser) {
+    this.idUser = idUser;
+    this.email = email;
+    this.password = password;
+    this.nickName = nickName;
+    this.sUser = sUser;
+  }
 
+let user1 = new User(0, "user1@gmail.com", "password1", "User1", true);
+let user2 = new User(0, "user2@gmail.com", "password2", "User2", false);
+let btn = "";
 
-*/
+function btnPermission(user){
+if (user.sUser == true){
+    btn = "Enabled";
+    
+    return btn;
+    }
+
+    else {
+        btn = "Disabled"
+        return btn;
+    }
+}
+
+console.log(btnPermission(user1));
+console.log(btnPermission(user2));
